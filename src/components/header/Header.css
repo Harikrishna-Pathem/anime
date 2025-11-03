@@ -1,96 +1,174 @@
+/* ========== HEADER BASE STYLING ========== */
 .header {
-  height: 100vh;
-  width: 100%;
-  margin: 0;
-  background: url("../../images/header.png") no-repeat center center;
-  background-size: cover;
   position: relative;
+  width: 100%;
+  height: 100vh;
+  background: url("../../images/header.png") no-repeat center center/cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
 }
 
-/* Dark overlay sits behind the text */
-.header::after {
-  content: "";
+/* Overlay for dark contrast */
+.header-overlay {
   position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.55);
   z-index: 1;
-  /* 👈 Overlay sits below text */
 }
 
-/* Content appears above overlay */
-.header-contents {
+/* Content container */
+.header-content {
   position: relative;
-  /* 👈 create new stacking context */
   z-index: 2;
-  /* 👈 ensures text/buttons appear above overlay */
-  display: flex;
-  align-items: center;
-  flex-direction: column;
-  gap: 1.5vw;
-  justify-content: center;
   text-align: center;
-  animation: fadeIn 3s;
-  width: 100%;
-  height: 100%;
+  color: #fff;
+  max-width: 900px;
+  padding: 0 20px;
+  animation: fadeIn 1.5s ease-in;
 }
 
-.header-contents h2 {
+/* Title */
+.header-content h1 {
+  font-size: clamp(2rem, 4vw + 1rem, 4.5rem);
   font-weight: 700;
-  color: whitesmoke;
-  font-size: 60px;
+  line-height: 1.2;
+  margin-bottom: 1rem;
+  letter-spacing: 0.5px;
 }
 
-.header-contents p {
-  color: whitesmoke;
-  font-size: 20px;
+/* Subtext */
+.header-content p {
+  font-size: clamp(1rem, 1.2vw + 0.5rem, 1.4rem);
+  line-height: 1.6;
+  color: #f2f2f2;
+  margin-bottom: 2rem;
 }
 
-.header-contents button {
+/* Buttons container */
+.header-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* Base button style */
+.btn {
   border: none;
-  font-weight: 500;
   border-radius: 10px;
-  font-size: max(1vw, 13px);
-  padding: 1vw 2.3vw;
+  font-weight: 600;
   cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: clamp(0.9rem, 1vw + 0.4rem, 1.1rem);
+  padding: 14px 30px;
 }
 
-.header-contents .shop {
+/* Button colors */
+.shop {
   background-color: #7d1422;
   color: white;
 }
-
-.buttons {
-
-  display: flex;
-  gap: 30px;
-  justify-content: center;
-}
-
-.header-contents .view {
+.view {
   background-color: #ec2124;
   color: white;
 }
 
-@media (max-width: 1050px) {
-  .header-contents {
-    max-width: 45%;
+/* Hover effects */
+.btn:hover {
+  opacity: 0.9;
+  transform: translateY(-3px);
+}
+
+/* ========== RESPONSIVE DESIGN ========== */
+
+/* Tablets */
+@media (max-width: 992px) {
+  .header {
+    height: 90vh;
+  }
+
+  .header-content p {
+    margin-bottom: 1.8rem;
   }
 }
 
-@media (max-width: 750px) {
-  .header-contents {
-    max-width: 65%;
+/* Mobile landscape and small tablets */
+@media (max-width: 768px) {
+  .header-content {
+    padding: 0 15px;
   }
 
-  .header-contents p {
-    display: none;
+  .header-content h1 {
+    line-height: 1.3;
   }
 
-  .header-contents button {
-    padding: 2vw 4vw;
+  .header-buttons {
+    gap: 15px;
+  }
+
+  .btn {
+    padding: 12px 26px;
+  }
+}
+
+/* Mobile portrait */
+@media (max-width: 576px) {
+  .header {
+    height: 80vh;
+  }
+
+  .header-content h1 {
+    font-size: 2rem;
+  }
+
+  .header-content p {
+    font-size: 0.95rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .header-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .btn {
+    width: 80%;
+    font-size: 0.9rem;
+    padding: 12px 0;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 400px) {
+  .header {
+    height: 75vh;
+  }
+
+  .header-content h1 {
+    font-size: 1.7rem;
+  }
+
+  .header-content p {
+    font-size: 0.9rem;
+  }
+
+  .btn {
+    width: 85%;
+    padding: 10px 0;
+  }
+}
+
+/* Simple fade animation */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
   }
 }

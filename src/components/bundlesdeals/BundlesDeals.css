@@ -1,163 +1,265 @@
-.bundle-container {
-
-    /* background-color: #121212; */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    overflow: hidden;
+/* ---------- Main Container ---------- */
+.bundles-container {
+  width: 100%;
+  background-color: #fafafa;
+  padding: 60px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
 }
 
+/* ---------- Section Title ---------- */
 .bundles-title {
-    text-align: center;
-    font-size: 2.5rem;
-    margin-top: 30px;
-    font-weight: 700;
-    color: #333;
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #222;
+  margin-bottom: 40px;
+  letter-spacing: 0.5px;
 }
 
+/* ---------- Bundle Card ---------- */
 .bundle-card {
-    width: 100%;
-    height: 60vh;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    background: #fff;
-    box-shadow: 0 10px 30px rgba(245, 242, 242, 0.4);
-    color: black;
-    position: relative;
-    transition: all 0.5s ease-in-out;
-    padding: 40px 60px;
-    padding-top: 0;
-    animation: fadeIn 0.8s ease;
+  width: 90%;
+  max-width: 1200px;
+  height: 65vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  border-radius: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+  color: #111;
+  position: relative;
+  padding: 40px 60px;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  animation: fadeIn 0.8s ease;
 }
 
+/* ---------- Left Section ---------- */
 .bundle-left {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 15px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 15px;
 }
 
 .bundle-tag {
-    color: white;
-    font-weight: bold;
-    letter-spacing: 1px;
-    border-radius: 15px;
-    background-color: #7d1422;
-    width: fit-content;
-    padding: 7px 15px;
-
+  background-color: #7d1422;
+  color: white;
+  font-weight: 600;
+  border-radius: 25px;
+  padding: 8px 18px;
+  width: fit-content;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
 }
 
 .bundle-title {
-    font-size: 3rem;
-    font-weight: 700;
-    margin: 0;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin: 5px 0;
 }
 
 .bundle-price {
-    font-size: 2rem;
-    font-weight: 600;
-    color: #7d1422;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #7d1422;
 }
 
 .bundle-desc {
-    font-size: 1.1rem;
-    color: #ccc;
-    max-width: 500px;
+  font-size: 1.05rem;
+  color: #666;
+  max-width: 500px;
+  line-height: 1.6;
 }
 
 .bundle-btn {
-    background-color: #ec2124;
-    color: white;
-    border: none;
-    border-radius: 50px;
-    padding: 12px 30px;
-    font-size: 1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background 0.3s;
-    width: fit-content;
+  background-color: #ec2124;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 35px;
+  font-size: 1rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  width: fit-content;
+  margin-top: 15px;
 }
 
 .bundle-btn:hover {
-    background-color: #7d1422;
+  background-color: #7d1422;
+  transform: scale(1.05);
 }
 
+/* ---------- Right Section ---------- */
 .bundle-right {
-    flex: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .bundle-image {
-    width: 80%;
-    height: auto;
-    object-fit: contain;
-    transition: transform 0.4s ease-in-out;
+  width: 80%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 0.4s ease-in-out;
 }
 
 .bundle-image:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
-/* Navigation Buttons */
+/* ---------- Navigation Buttons ---------- */
 .bundle-nav {
-    position: absolute;
-    bottom: 30px;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    justify-content: space-between;
-
+  position: absolute;
+  bottom: 25px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 60px;
 }
 
 .bundle-nav button {
-    background-color: rgba(255, 255, 255, 0.1);
-    color: black;
-    border: 1px solid #555;
-    border-radius: 30px;
-    padding: 10px 20px;
-    font-size: 1rem;
-    cursor: pointer;
-    transition: all 0.3s ease;
+  background-color: #f7f7f7;
+  color: #333;
+  border: 1px solid #ccc;
+  border-radius: 25px;
+  padding: 10px 22px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
 
 .bundle-nav button:hover {
-    background-color: #ec2124;
-    border-color: #ec2124;
-    color: white;
+  background-color: #ec2124;
+  color: white;
+  border-color: #ec2124;
 }
 
+/* ---------- Animation ---------- */
 @keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(15px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-/* Responsive */
-@media (max-width: 900px) {
-    .bundle-card {
-        flex-direction: column;
-        text-align: center;
-        height: auto;
-        padding: 40px 20px;
-    }
+/* ---------- Responsive ---------- */
 
-    .bundle-right img {
-        width: 70%;
-    }
+/* Tablets */
+@media (max-width: 1024px) {
+  .bundle-card {
+    flex-direction: column;
+    height: auto;
+    text-align: center;
+    padding: 40px 30px;
+  }
 
-    .bundle-nav {
-        bottom: 20px;
-    }
+  .bundle-left {
+    align-items: center;
+  }
+
+  .bundle-right {
+    margin-top: 30px;
+  }
+
+  .bundle-image {
+    width: 65%;
+  }
+
+  .bundle-nav {
+    position: relative;
+    margin-top: 30px;
+    padding: 0;
+    justify-content: center;
+    gap: 15px;
+  }
+}
+
+/* Mobile Landscape & Small Tablets */
+@media (max-width: 768px) {
+  .bundles-title {
+    font-size: 2rem;
+  }
+
+  .bundle-title {
+    font-size: 2rem;
+  }
+
+  .bundle-price {
+    font-size: 1.6rem;
+  }
+
+  .bundle-desc {
+    font-size: 0.95rem;
+    max-width: 90%;
+  }
+
+  .bundle-btn {
+    font-size: 0.9rem;
+    padding: 10px 25px;
+  }
+
+  .bundle-image {
+    width: 75%;
+  }
+}
+
+/* Mobile Portrait */
+@media (max-width: 480px) {
+  .bundle-card {
+    padding: 25px 20px;
+    border-radius: 16px;
+  }
+
+  .bundles-title {
+    font-size: 1.6rem;
+  }
+
+  .bundle-title {
+    font-size: 1.6rem;
+  }
+
+  .bundle-price {
+    font-size: 1.3rem;
+  }
+
+  .bundle-desc {
+    font-size: 0.9rem;
+  }
+
+  .bundle-image {
+    width: 85%;
+  }
+
+  .bundle-nav button {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}
+
+/* Extra Small Screens */
+@media (max-width: 360px) {
+  .bundle-title {
+    font-size: 1.4rem;
+  }
+
+  .bundle-desc {
+    font-size: 0.85rem;
+  }
+
+  .bundle-image {
+    width: 90%;
+  }
 }

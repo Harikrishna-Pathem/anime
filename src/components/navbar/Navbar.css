@@ -1,162 +1,223 @@
-/* Navbar main container */
+:root {
+  --primary-text: #222;
+  --gray: #777;
+  --border: #e5e5e5;
+  --radius: 8px;
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  font-size: 16px;
+}
+
+/* =========================
+   Navbar
+========================= */
 .navbar {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 80px;
-  background-color: #ffffff;
-  border-bottom: 1px solid #e5e5e5;
-  padding: 0 40px;
-  box-sizing: border-box;
+  background: #fff;
+  border-bottom: 1px solid var(--border);
+  padding: 0.7rem 2rem;
   position: sticky;
   top: 0;
   z-index: 100;
+  transition: all 0.3s ease-in-out;
 }
 
-/* Left section: logo + title */
+/* Logo Area */
 .navbar-left {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 0.6rem;
 }
 
-.navbar-left img:first-child {
-  height: 50px;
+.logo {
+  height: 2.5rem;
   width: auto;
 }
 
-.navbar-left img:last-child {
-  height: 40px;
+.title {
+  height: 2rem;
   width: auto;
 }
 
-/* Center section: search bar */
+/* Search Bar */
 .navbar-center {
   flex: 1;
   display: flex;
   justify-content: center;
+  transition: max-width 0.3s ease, opacity 0.3s ease;
 }
 
 .navbar-center input {
   width: 60%;
   max-width: 600px;
-  min-width: 250px;
-  padding: 10px 16px;
+  padding: 0.6rem 1rem;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
-  font-size: 15px;
-  background-color: #f9f9f9;
-  transition: all 0.2s ease-in-out;
+  border-radius: var(--radius);
+  background: #f9f9f9;
+  font-size: 0.95rem;
 }
 
 .navbar-center input:focus {
-  border-color: #888;
-  background-color: #fff;
-  box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+  background: #fff;
+  border-color: var(--gray);
 }
 
-/* Right section: icons (SVGs) */
+/* Hide search on mobile until icon clicked */
+@media (max-width: 768px) {
+  .navbar-center {
+    max-width: 0;
+    opacity: 0;
+    overflow: hidden;
+  }
+
+  .navbar-center.active {
+    max-width: 100%;
+    opacity: 1;
+    margin-top: 0.8rem;
+  }
+}
+
+/* Icons */
 .navbar-right {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  gap: 0.8rem;
 }
 
-.navbar-right svg {
+.icon-btn,
+.menu-toggle {
+  background: none;
+  border: none;
   cursor: pointer;
-  /* transition: transform 0.2s ease-in-out; */
 }
 
-/* 
-.navbar-right svg:hover {
-  transform: scale(1.05);
-} */
-
-/* Responsive design */
-@media (max-width: 900px) {
-  .navbar {
-    flex-direction: column;
-    height: auto;
-    padding: 20px;
-    gap: 15px;
-  }
-
-  .navbar-center input {
-    width: 80%;
-  }
+.icon {
+  cursor: pointer;
+  width: 1.6rem;
+  height: 1.6rem;
+  transition: transform 0.2s;
 }
 
-@media (max-width: 600px) {
-  .navbar-left img:last-child {
-    display: none;
-    /* hide title text on mobile */
-  }
-
-  .navbar-center input {
-    width: 100%;
-  }
+.icon:hover {
+  transform: scale(1.1);
 }
 
-
-.navbar-links ul {
-  display: flex;
-  flex-direction: row;
-  gap: 24px;
-  /* Space between links */
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-}
-
+/* =========================
+   Navbar2 (Links + Pincode)
+========================= */
 .navbar2 {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   background: #fff;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
+  box-shadow: var(--shadow);
+  padding: 0.6rem 2rem;
+  flex-wrap: wrap;
+  gap: 1rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar-links {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
 }
 
 .navbar-links li {
-  max-width: fit-content;
-  min-width: 100px;
-  height: 50px;
-  display: flex;
-  padding: 10px;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  color: #222;
-  /* Adjust color as needed */
+  padding: 0.5rem 1rem;
+  font-size: 0.95rem;
+  color: var(--primary-text);
+  border-radius: var(--radius);
   cursor: pointer;
-  transition: color 0.2s;
+  transition: all 0.2s ease;
 }
 
 .navbar-links li:hover {
-  background-color: #888;
-  color: white;
+  background: #222;
+  color: #fff;
 }
 
+/* Pincode */
 .pincode {
   display: flex;
-  justify-content: center;
   align-items: center;
-  padding-right: 20px;
+  gap: 0.5rem;
+  font-size: 0.9rem;
 }
 
 .pincode input {
-  width: 180px;
-  padding: 5px 8px;
+  padding: 0.5rem 0.7rem;
   border: 1px solid #ccc;
-  border-radius: 8px;
-  outline: none;
-  font-size: 14px;
-  background-color: white;
-  transition: all 0.2s ease-in-out;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
 }
 
-.pincode label {
-  margin-right: 8px;
-  font-size: 14px;
-  color: #555;
+/* =========================
+   Responsive Styles
+========================= */
+@media (max-width: 1024px) {
+  :root {
+    font-size: 15px;
+  }
+}
+
+/* Mobile Menu */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+  }
+
+  .title {
+    height: 1.6rem;
+  }
+
+  .menu-toggle {
+    display: inline-block;
+  }
+
+  .navbar2 {
+    flex-direction: column;
+    align-items: flex-start;
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    padding: 0;
+  }
+
+  .navbar2.open {
+    max-height: 500px;
+    opacity: 1;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .navbar-links {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .navbar-links li {
+    width: 100%;
+    padding: 0.7rem 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .pincode {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .title {
+    display: none;
+  }
+
+  .logo {
+    height: 2rem;
+  }
 }

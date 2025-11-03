@@ -60,9 +60,7 @@ const Reviews = () => {
           <div key={review.id} className="review-card">
             <img src={review.image} alt={review.name} className="review-image" />
             <h3>{review.name}</h3>
-            <div className="review-stars">
-              {"⭐".repeat(review.rating)}
-            </div>
+            <div className="review-stars">{"⭐".repeat(review.rating)}</div>
             <p className="review-comment">“{review.comment}”</p>
           </div>
         ))}
