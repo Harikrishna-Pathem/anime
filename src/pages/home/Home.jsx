@@ -11,31 +11,64 @@ import BundlesDeals from "../../components/bundlesdeals/BundleDeals";
 import Reviews from "../../components/reviews/Reviews";
 import SecureSteps from "../../components/securesteps/SecureSteps";
 
-
 const Home = () => {
-
   const products = [
-    { id: 1, image: product_one, name: "Naruto Collection", items: 15, price: 1499 },
-    { id: 2, image: product_two, name: "Demon Slayer Collection", items: 15, price: 1299 },
-    { id: 3, image: product_three, name: "One Piece Collection", items: 15, price: 1599 },
-    { id: 4, image: product_four, name: "All Time Favorites", items: 150, price: 4999 },
-    { id: 5, image: product_one, name: "Attack on Titan Collection", items: 25, price: 1999 },
-    { id: 6, image: product_two, name: "My Hero Academia", items: 30, price: 2199 },
+    {
+      id: 1,
+      image: product_one,
+      name: "Naruto Collection",
+      items: 15,
+      price: 1499,
+    },
+    {
+      id: 2,
+      image: product_two,
+      name: "Demon Slayer Collection",
+      items: 15,
+      price: 1299,
+    },
+    {
+      id: 3,
+      image: product_three,
+      name: "One Piece Collection",
+      items: 15,
+      price: 1599,
+    },
+    {
+      id: 4,
+      image: product_four,
+      name: "All Time Favorites",
+      items: 150,
+      price: 4999,
+    },
+    {
+      id: 5,
+      image: product_one,
+      name: "Attack on Titan Collection",
+      items: 25,
+      price: 1999,
+    },
+    {
+      id: 6,
+      image: product_two,
+      name: "My Hero Academia",
+      items: 30,
+      price: 2199,
+    },
   ];
-
 
   return (
     <>
       <div>
-        <Navbar />
+        {/* <Navbar /> */}
         <Header />
         <FeaturedCollection products={products} />
         <BundlesDeals products={products} />
         <FeaturedProducts products={products} />
         <Reviews />
         <SecureSteps />
-        <Footer />
       </div>
+      {/* <Footer /> */}
     </>
   );
 };
