@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import Home from "./pages/home/Home";
 import Footer from "./components/footer.jsx/Footer";
 import LoginPage from "././components/logindetails/LoginPage";
@@ -11,14 +11,35 @@ import AdminDashboard from "./admindashboard/AdminDashboard";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(false);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAdmin) navigate("/admin");
+    else navigate("/");
+  }, [isAdmin]);
+
   return (
     <>
-      {showLogin ? <LoginPage setShowLogin={setShowLogin} /> : <></>}
+      {showLogin ? (
+        <LoginPage
+          setShowLogin={setShowLogin}
+          isAdmin={isAdmin}
+          setIsAdmin={setIsAdmin}
+        />
+      ) : (
+        <></>
+      )}
       <div>
-        <Navbar setShowLogin={setShowLogin} />
         <Routes>
-          <Route path="/" element={<Home />} />
-          {/* <Route path="/admin" element={<AdminDashboard />} /> */}
+          <Route path="/" element={<Home setShowLogin={setShowLogin} />} />
+          <Route
+            path="/admin"
+            element={
+              <AdminDashboard isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
+            }
+          />
         </Routes>
       </div>
       <Footer />

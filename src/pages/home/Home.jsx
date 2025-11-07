@@ -11,7 +11,7 @@ import BundlesDeals from "../../components/bundlesdeals/BundleDeals";
 import Reviews from "../../components/reviews/Reviews";
 import SecureSteps from "../../components/securesteps/SecureSteps";
 
-const Home = () => {
+const Home = ({setShowLogin}) => {
   const products = [
     {
       id: 1,
@@ -60,7 +60,7 @@ const Home = () => {
   return (
     <>
       <div>
-        {/* <Navbar /> */}
+         <Navbar setShowLogin={setShowLogin} />
         <Header />
         <FeaturedCollection products={products} />
         <BundlesDeals products={products} />
