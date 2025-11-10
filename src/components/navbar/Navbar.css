@@ -1,25 +1,27 @@
-:root{
+:root {
   --primary-text: #222;
   --gray: #777;
   --border: #e5e5e5;
   --radius: 8px;
-  --shadow: 0 2px 8px rgba(0,0,0,0.07);
+  --shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
   --brand: tomato;
   --bg: #fff;
   font-size: 16px;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 /* -------------------------
    Utility / Reset for nav
    ------------------------- */
-.navbar, .navbar2 {
+.navbar,
+.navbar2 {
   box-sizing: border-box;
   width: 100%;
   background: var(--bg);
   color: var(--primary-text);
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue",
+    Arial;
 }
 
 /* =========================
@@ -36,7 +38,11 @@
   top: 0;
   z-index: 100;
   transition: background 0.2s ease, box-shadow 0.2s ease, padding 0.2s ease;
-  background: linear-gradient(180deg, rgba(255,255,255,0.98) 0%, var(--bg) 100%);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.98) 0%,
+    var(--bg) 100%
+  );
 }
 
 /* Left: Logo + Title */
@@ -63,6 +69,7 @@
   flex: 1;
   display: flex;
   justify-content: center;
+  width: fit-content;
   transition: max-width 0.25s ease, opacity 0.25s ease;
   min-width: 0; /* allow children to shrink */
 }
@@ -77,15 +84,18 @@
   background: #f9f9f9;
   font-size: 0.95rem;
   outline: none;
-  transition: background 0.15s ease, border-color 0.15s ease, box-shadow 0.12s ease;
+  transition: background 0.15s ease, border-color 0.15s ease,
+    box-shadow 0.12s ease;
 }
 
-.navbar-center input::placeholder { color: #aaa; }
+.navbar-center input::placeholder {
+  color: #aaa;
+}
 
 .navbar-center input:focus {
   background: #fff;
   border-color: var(--gray);
-  box-shadow: 0 4px 12px rgba(0,0,0,0.04);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
 }
 
 /* Right: Icons / Signin area */
@@ -96,7 +106,9 @@
 }
 
 /* Generic icon/button styles */
-.icon-btn, .menu-toggle, .icon {
+.icon-btn,
+.menu-toggle,
+.icon {
   background: none;
   border: none;
   cursor: pointer;
@@ -111,8 +123,15 @@
   width: 1.6rem;
   height: 1.6rem;
 }
-.icon-btn:hover, .icon:hover { transform: scale(1.08); }
-.icon-btn:focus, .menu-toggle:focus { outline: 3px solid rgba(0,150,255,0.12); border-radius: 6px; }
+.icon-btn:hover,
+.icon:hover {
+  transform: scale(1.08);
+}
+.icon-btn:focus,
+.menu-toggle:focus {
+  outline: 3px solid rgba(0, 150, 255, 0.12);
+  border-radius: 6px;
+}
 
 /* =========================
    Sign-in area
@@ -134,16 +153,19 @@
   font-size: 16px;
   padding: 10px 30px;
   cursor: pointer;
-  transition: background-color 0.18s ease, color 0.18s ease, box-shadow 0.12s ease;
+  transition: background-color 0.18s ease, color 0.18s ease,
+    box-shadow 0.12s ease;
 }
 
 /* Hover / focus */
 .navbar-signin button:hover {
   background-color: #0096ff; /* your original hover bg */
   color: #fff;
-  box-shadow: 0 6px 18px rgba(0,0,0,0.06);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
 }
-.navbar-signin button:focus { outline: 3px solid rgba(0,150,255,0.12); }
+.navbar-signin button:focus {
+  outline: 3px solid rgba(0, 150, 255, 0.12);
+}
 
 /* =========================
    Secondary Navbar (links + pincode)
@@ -158,16 +180,21 @@
   flex-wrap: wrap;
   transition: max-height 0.2s ease, padding 0.2s ease, opacity 0.2s ease;
 }
+.search-icon{
+  position: absolute;
+  left: 68%;
+  top: 35%;
+}
 
 /* Links */
 .navbar-links {
-  display:flex;
-  gap:1rem;
-  list-style:none;
-  margin:0;
-  padding:0;
-  align-items:center;
-  flex-wrap:wrap;
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
 .navbar-links li {
@@ -175,7 +202,7 @@
   font-size: 0.95rem;
   color: var(--primary-text);
   border-radius: var(--radius);
-  cursor:pointer;
+  cursor: pointer;
   transition: background 0.15s ease, color 0.15s ease, transform 0.12s ease;
 }
 .navbar-links li:hover {
@@ -186,16 +213,16 @@
 
 /* Pincode */
 .pincode {
-  display:flex;
-  align-items:center;
-  gap:0.5rem;
-  font-size:0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
 }
 .pincode input {
   padding: 0.5rem 0.7rem;
-  border:1px solid #ccc;
+  border: 1px solid #ccc;
   border-radius: var(--radius);
-  font-size:0.9rem;
+  font-size: 0.9rem;
   min-width: 120px;
 }
 
@@ -205,11 +232,21 @@
 
 /* Medium screens (tablet / small desktop) */
 @media (max-width: 1024px) {
-  :root { font-size: 15px; }
+  :root {
+    font-size: 15px;
+  }
 
-  .navbar-signin { gap: 20px; }
-  .navbar-signin button { font-size: 15px; padding: 8px 24px; }
-  .navbar-center input { width: 70%; max-width: 520px; }
+  .navbar-signin {
+    gap: 20px;
+  }
+  .navbar-signin button {
+    font-size: 15px;
+    padding: 8px 24px;
+  }
+  .navbar-center input {
+    width: 70%;
+    max-width: 520px;
+  }
 }
 
 /* Mobile - collapse search until icon click (your existing pattern) */
@@ -221,7 +258,9 @@
   }
 
   /* Hide large title subtly */
-  .title { height: 1.6rem; }
+  .title {
+    height: 1.6rem;
+  }
 
   /* Search hidden by default (toggle by adding .active) */
   .navbar-center {
@@ -231,16 +270,22 @@
     width: 100%;
     margin-top: 0;
     transition: max-width 0.22s ease, opacity 0.22s ease;
+    position: relative;
   }
   .navbar-center.active {
     max-width: 100%;
     opacity: 1;
     margin-top: 0.6rem;
   }
-  .navbar-center input { width: 100%; max-width: 100%; }
+  .navbar-center input {
+    width: 100%;
+    max-width: 100%;
+  }
 
   /* Menu toggle visible on mobile */
-  .menu-toggle { display: inline-flex; }
+  .menu-toggle {
+    display: inline-flex;
+  }
 
   /* Navbar-right wraps into a row with signin centered below when space limited */
   .navbar-right {
@@ -251,7 +296,7 @@
   /* Signin becomes a full-width, centered block below main navbar row */
   .navbar-signin {
     width: 100%;
-    justify-content: center;    /* center in mobile view */
+    justify-content: center; /* center in mobile view */
     margin-top: 0.6rem;
     gap: 12px;
     padding: 0.4rem 0;
@@ -299,8 +344,12 @@
 
 /* Extra small phones */
 @media (max-width: 480px) {
-  .title { display: none; }
-  .logo { height: 2rem; }
+  .title {
+    display: none;
+  }
+  .logo {
+    height: 2rem;
+  }
 
   .navbar-signin {
     flex-direction: column;
@@ -314,8 +363,13 @@
     padding: 9px;
   }
 
-  .navbar-center input { padding: 0.5rem 0.85rem; font-size: 0.92rem; }
-  .pincode input { min-width: 100px; }
+  .navbar-center input {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.92rem;
+  }
+  .pincode input {
+    min-width: 100px;
+  }
 }
 
 /* =========================
@@ -323,11 +377,14 @@
    ========================= */
 .sr-only {
   position: absolute !important;
-  height: 1px; width:1px;
-  overflow:hidden;
-  clip: rect(1px,1px,1px,1px);
-  white-space:nowrap;
+  height: 1px;
+  width: 1px;
+  overflow: hidden;
+  clip: rect(1px, 1px, 1px, 1px);
+  white-space: nowrap;
 }
 
 /* small visual polish */
-.navbar-links li:active { transform: translateY(0); }
+.navbar-links li:active {
+  transform: translateY(0);
+}

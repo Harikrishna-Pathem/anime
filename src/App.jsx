@@ -8,6 +8,8 @@ import Footer from "./components/footer.jsx/Footer";
 import LoginPage from "././components/logindetails/LoginPage";
 import Navbar from "./components/navbar/Navbar";
 import AdminDashboard from "./admindashboard/AdminDashboard";
+import CheckOutPage from "./pages/checkout/CheckOutPageOne";
+import CheckOutPageOne from "./pages/checkout/CheckOutPageOne";
 
 function App() {
   const [showLogin, setShowLogin] = useState(false);
@@ -40,6 +42,7 @@ function App() {
               <AdminDashboard isAdmin={isAdmin} setIsAdmin={setIsAdmin} />
             }
           />
+          <Route path="/checkoutpageone" element={<CheckOutPageOne />} />
         </Routes>
       </div>
       <Footer />
