@@ -12,11 +12,13 @@ import CheckOutPage from "./pages/checkout/CheckOutPageOne";
 import CheckOutPageOne from "./pages/checkout/CheckOutPageOne";
 import AuthPopup from "./components/logindetails/AuthPopup";
 
+
 function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [isAdmin, setIsAdmin] = useState(false);
-
   const navigate = useNavigate();
+
+  
 
   useEffect(() => {
     if (isAdmin) navigate("/admin");

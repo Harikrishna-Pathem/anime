@@ -1,20 +1,57 @@
 import { useState } from "react";
 import "./LoginPage.css";
+import { useAuthContext } from "../../Auth.jsx";
 
 const LoginPage = ({ setShowLogin, setIsAdmin, onSwitchToSignup }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const { axiosInstance } = useAuthContext();
+  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
 
-    if (email.trim().toLowerCase() === "admin@gmail.com") {
-      setIsAdmin(true);
-    } else {
-      setIsAdmin(false);
+    if (!email.trim() || !password) {
+      setError("Please enter email and password");
+      return;
     }
 
-    console.log("Logged in:", email);
+    setLoading(true);
+    try {
+
+      const response = await axiosInstance.post('/auth/login', {
+        email: email.trim().toLowerCase(),
+        password: password
+      });
+
+      const data = response.data;
+
+      const accessToken = data.token || data.accessToken || data.access_token;
+      const refreshToken = data.refreshToken || data.refresh_token;
+
+      if (accessToken) {
+        localStorage.setItem("access_token", accessToken);
+      }
+
+      if (refreshToken) {
+        localStorage.setItem("refresh_token", refreshToken);
+      }
+
+      if (response.date?.token) {
+        localStorage.setItem("access_token", response.data.token);
+      }
+
+      setShowLogin(false);
+
+    } catch (error) {
+
+    } finally {
+      setLoading(false);
+    }
+
+    // console.log("Logged in:", email);
     setShowLogin(false);
   };
 
@@ -32,6 +69,7 @@ const LoginPage = ({ setShowLogin, setIsAdmin, onSwitchToSignup }) => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
+          autoComplete="email"
         />
         <input
           type="password"
@@ -39,6 +77,7 @@ const LoginPage = ({ setShowLogin, setIsAdmin, onSwitchToSignup }) => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
           required
+          autoComplete="current-password"
         />
       </div>
 

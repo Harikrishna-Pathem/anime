@@ -1,22 +1,47 @@
 import { useState } from "react";
+import { useAuthContext } from "../../Auth.jsx";
 
 const SignupPage = ({ signupData, setSignupData, onOtpSent, onCancel }) => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(null);
+  const { axiosInstance } = useAuthContext();
+
 
   const handleSignup = async (e) => {
     e.preventDefault();
     setLoading(true);
+    console.log("Signup data:", signupData);
+    console.log(axiosInstance);
+    
+    
 
-    // Fake API request for OTP
-    setTimeout(() => {
-      console.log("OTP sent to:", signupData.email);
+    // API request for OTP
+    try {
+      const response = await axiosInstance.post("/auth/signup", {
+        name: signupData.name,
+        email: signupData.email,
+        password: signupData.password
+      });
+      console.log("Signup response:", response);
+      
+      
+
+    
+
+      onOtpSent?.();
+    } catch (error) {
+      console.log("Signup error:", error);
+      if (error.response) {
+      } else {
+        setError(error.message);
+      }
+    } finally {
       setLoading(false);
-      onOtpSent();
-    }, 1000);
+    }
   };
 
   return (
-    <form onSubmit={handleSignup} className="login-popup-container">
+    <form onSubmit={handleSignup} className="login-popup-container" >
       <div className="login-popup-title">
         <h2>Sign Up</h2>
         <div onClick={onCancel} style={{ cursor: "pointer" }}>✖</div>
@@ -50,10 +75,10 @@ const SignupPage = ({ signupData, setSignupData, onOtpSent, onCancel }) => {
         {loading ? "Sending OTP..." : "Send OTP"}
       </button>
 
-      <div className="login-popup-condition">
+      {/* <div className="login-popup-condition">
         <input type="checkbox" required />
         <p>By continuing, I agree to the terms of use & privacy policy</p>
-      </div>
+      </div> */}
 
       <p>
         Already have an account?{" "}
