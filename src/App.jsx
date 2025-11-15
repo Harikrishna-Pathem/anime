@@ -18,7 +18,6 @@ function App() {
   const [isAdmin, setIsAdmin] = useState(false);
   const navigate = useNavigate();
 
-  
 
   useEffect(() => {
     if (isAdmin) navigate("/admin");
