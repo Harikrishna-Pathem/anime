@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuthContext } from "../../Auth";
 
 
-const VerifyOtpPage = ({ signupData, otp, setOtp, onVerified, onResendOtp, onBack }) => {
+const VerifyOtpPage = ({ signupData, otp, setOtp, onVerified,  onBack }) => {
 
   const { axiosInstance } = useAuthContext();
   const [loading, setLoading] = useState(false);
@@ -47,6 +47,29 @@ const VerifyOtpPage = ({ signupData, otp, setOtp, onVerified, onResendOtp, onBac
 
   };
 
+
+  const onResendOtp = async () => {
+    setResendMessage("");
+    setResendLoading(true);
+
+    console.log(signupData);
+    
+    try {
+      const response = await axiosInstance.post('/auth/signup', {
+        name : signupData.name,
+        email: signupData.email,
+        password: signupData.password
+      });
+      console.log("Resend OTP response:", response);
+      
+      setResendMessage("OTP has been resent successfully.");
+    } catch (error) {
+      console.log("Resend OTP error:", error);
+      setError("Failed to resend OTP. Please try again later.");
+    } finally {
+      setResendLoading(false);
+    }
+  }
   return (
     <form onSubmit={handleVerify} className="login-popup-container">
       <div className="login-popup-title">
@@ -73,7 +96,7 @@ const VerifyOtpPage = ({ signupData, otp, setOtp, onVerified, onResendOtp, onBac
       <button type="submit">Verify</button>
       <p>
         Didn’t receive OTP?{" "}
-        <span onClick={onResendOtp}>Resend</span>
+        <span onClick={onResendOtp} >Resend</span>
       </p>
     </form>
   );
