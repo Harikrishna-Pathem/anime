@@ -1,6 +1,6 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./categories.module.css";
+import styles from "./Categories.module.css";
 
 import noRestock from "../../images/categories/no-restock.png";
 import actionFigures from "../../images/categories/action-figures.png";
