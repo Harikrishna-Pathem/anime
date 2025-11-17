@@ -37,7 +37,7 @@ const AuthPopup = ({ setShowLogin, setIsAdmin }) => {
             alert("Account created successfully!");
             setStep("login");
           }}
-          onResendOtp={() => alert("OTP resent!")}
+          // onResendOtp={() => alert("OTP resent!")}
           onBack={() => setStep("signup")}
         />
       )}

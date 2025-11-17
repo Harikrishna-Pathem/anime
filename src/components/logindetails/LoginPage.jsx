@@ -25,11 +25,16 @@ const LoginPage = ({ setShowLogin, setIsAdmin, onSwitchToSignup }) => {
         email: email.trim().toLowerCase(),
         password: password
       });
+      console.log(response);
+
 
       const data = response.data;
 
-      const accessToken = data.token || data.accessToken || data.access_token;
-      const refreshToken = data.refreshToken || data.refresh_token;
+      const accessToken =  data.tokens?.accessToken ;
+      const refreshToken = data.tokens?.refreshToken ;
+      const user = data.user;
+
+      user ? localStorage.setItem("user", JSON.stringify(user)) : null;
 
       if (accessToken) {
         localStorage.setItem("access_token", accessToken);
