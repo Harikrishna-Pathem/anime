@@ -55,7 +55,7 @@
 }
 
 /* Base button style */
-.btn {
+.header-button {
   border: none;
   border-radius: 10px;
   font-weight: 600;
@@ -76,7 +76,7 @@
 }
 
 /* Hover effects */
-.btn:hover {
+.header-button:hover {
   opacity: 0.9;
   transform: translateY(-3px);
 }
@@ -108,7 +108,7 @@
     gap: 15px;
   }
 
-  .btn {
+  .header-button {
     padding: 12px 26px;
   }
 }
@@ -134,7 +134,7 @@
     gap: 12px;
   }
 
-  .btn {
+  .header-button {
     width: 80%;
     font-size: 0.9rem;
     padding: 12px 0;
@@ -155,7 +155,7 @@
     font-size: 0.9rem;
   }
 
-  .btn {
+  .header-button {
     width: 85%;
     padding: 10px 0;
   }

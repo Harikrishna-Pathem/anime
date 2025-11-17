@@ -37,7 +37,7 @@ function App() {
       )}
       <div>
         <Routes>
-          <Route path="/" element={<Home setShowLogin={setShowLogin} />} />
+          <Route path="/*" element={<Home setShowLogin={setShowLogin} />} />
           <Route
             path="/admin"
             element={

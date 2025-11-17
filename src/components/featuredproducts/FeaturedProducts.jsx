@@ -1,5 +1,5 @@
 import React, { useRef } from "react";
-import "../featuredcollection/FeaturedCollection.css";
+import "./FeaturedProducts.css";
 
 const FeaturedProducts = ({ products }) => {
   const scrollRef = useRef(null);

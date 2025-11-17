@@ -2,10 +2,13 @@ import React, { useEffect, useState } from "react";
 import logo from "../../images/logo.png";
 import title from "../../images/title.png";
 import "./Navbar.css";
+import { useNavigate } from "react-router-dom";
 
 const Navbar = ({ setShowLogin }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
+
+  const navigate = useNavigate();
 
   const breakpoint = 768;
 
@@ -50,49 +53,64 @@ const Navbar = ({ setShowLogin }) => {
         <div className="navbar-right">
           {/* Search Icon */}
           {isMobile && (
-            <button
-              className="icon-btn"
-              onClick={() => setSearchOpen(!searchOpen)}
-            >
-              <svg
-                width="28"
-                height="28"
-                viewBox="0 0 24 24"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
+            <>
+              <button
+                className="icon-btn"
+                onClick={() => setSearchOpen(!searchOpen)}
               >
-                <circle
-                  cx="10"
-                  cy="10"
-                  r="7"
-                  stroke="black"
-                  strokeWidth="1.5"
-                />
-                <line
-                  x1="14.5"
-                  y1="14.5"
-                  x2="21"
-                  y2="21"
-                  stroke="black"
-                  strokeWidth="1.5"
-                />
-              </svg>
-            </button>
+                <svg
+                  width="28"
+                  height="28"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <circle
+                    cx="10"
+                    cy="10"
+                    r="7"
+                    stroke="black"
+                    strokeWidth="1.5"
+                  />
+                  <line
+                    x1="14.5"
+                    y1="14.5"
+                    x2="21"
+                    y2="21"
+                    stroke="black"
+                    strokeWidth="1.5"
+                  />
+                </svg>
+              </button>
+            </>
           )}
 
           {/* Cart / Example Icon */}
-          <svg
-            width="30"
-            height="30"
-            viewBox="0 0 30 30"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              d="M24 24C22.335 24 21 25.335 21 27C21 27.7956 21.3161 28.5587 21.8787 29.1213C22.4413 29.6839 23.2044 30 24 30C24.7956 30 25.5587 29.6839 26.1213 29.1213C26.6839 28.5587 27 27.7956 27 27C27 26.2044 26.6839 25.4413 26.1213 24.8787C25.5587 24.3161 24.7956 24 24 24ZM0 0V3H3L8.4 14.385L6.36 18.06C6.135 18.48 6 18.975 6 19.5C6 20.2956 6.31607 21.0587 6.87868 21.6213C7.44129 22.1839 8.20435 22.5 9 22.5H27V19.5H9.63C9.53054 19.5 9.43516 19.4605 9.36483 19.3902C9.29451 19.3198 9.255 19.2245 9.255 19.125C9.255 19.05 9.27 18.99 9.3 18.945L10.65 16.5H21.825C22.95 16.5 23.94 15.87 24.45 14.955L29.82 5.25C29.925 5.01 30 4.755 30 4.5C30 4.10218 29.842 3.72064 29.5607 3.43934C29.2794 3.15804 28.8978 3 28.5 3H6.315L4.905 0M9 24C7.335 24 6 25.335 6 27C6 27.7956 6.31607 28.5587 6.87868 29.1213C7.44129 29.6839 8.20435 30 9 30C9.79565 30 10.5587 29.6839 11.1213 29.1213C11.6839 28.5587 12 27.7956 12 27C12 26.2044 11.6839 25.4413 11.1213 24.8787C10.5587 24.3161 9.79565 24 9 24Z"
+          <button className="icon-btn">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              height="24px"
+              viewBox="0 -960 960 960"
+              width="24px"
               fill="black"
-            />
-          </svg>
+            >
+              <path d="m480-120-58-52q-101-91-167-157T150-447.5Q111-500 95.5-544T80-634q0-94 63-157t157-63q52 0 99 22t81 62q34-40 81-62t99-22q94 0 157 63t63 157q0 46-15.5 90T810-447.5Q771-395 705-329T538-172l-58 52Zm0-108q96-86 158-147.5t98-107q36-45.5 50-81t14-70.5q0-60-40-100t-100-40q-47 0-87 26.5T518-680h-76q-15-41-55-67.5T300-774q-60 0-100 40t-40 100q0 35 14 70.5t50 81q36 45.5 98 107T480-228Zm0-273Z" />
+            </svg>
+          </button>
+          <button className="icon-btn">
+            <svg
+              width="24"
+              height="28"
+              viewBox="0 0 30 30"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M24 24C22.335 24 21 25.335 21 27C21 27.7956 21.3161 28.5587 21.8787 29.1213C22.4413 29.6839 23.2044 30 24 30C24.7956 30 25.5587 29.6839 26.1213 29.1213C26.6839 28.5587 27 27.7956 27 27C27 26.2044 26.6839 25.4413 26.1213 24.8787C25.5587 24.3161 24.7956 24 24 24ZM0 0V3H3L8.4 14.385L6.36 18.06C6.135 18.48 6 18.975 6 19.5C6 20.2956 6.31607 21.0587 6.87868 21.6213C7.44129 22.1839 8.20435 22.5 9 22.5H27V19.5H9.63C9.53054 19.5 9.43516 19.4605 9.36483 19.3902C9.29451 19.3198 9.255 19.2245 9.255 19.125C9.255 19.05 9.27 18.99 9.3 18.945L10.65 16.5H21.825C22.95 16.5 23.94 15.87 24.45 14.955L29.82 5.25C29.925 5.01 30 4.755 30 4.5C30 4.10218 29.842 3.72064 29.5607 3.43934C29.2794 3.15804 28.8978 3 28.5 3H6.315L4.905 0M9 24C7.335 24 6 25.335 6 27C6 27.7956 6.31607 28.5587 6.87868 29.1213C7.44129 29.6839 8.20435 30 9 30C9.79565 30 10.5587 29.6839 11.1213 29.1213C11.6839 28.5587 12 27.7956 12 27C12 26.2044 11.6839 25.4413 11.1213 24.8787C10.5587 24.3161 9.79565 24 9 24Z"
+                fill="black"
+              />
+            </svg>
+          </button>
 
           {/* Menu Toggle Button (Mobile) */}
           {isMobile && (
@@ -142,16 +160,19 @@ const Navbar = ({ setShowLogin }) => {
       </nav>
 
       {/* ===== Secondary Navbar ===== */}
-      <div className={`navbar2 ${menuOpen ? "open" : ""}`}>
-        <ul className="navbar-links">
-          <li>Anime Collection</li>
-          <li>Characters</li>
-          <li>Bundles</li>
-          <li>Featured</li>
-          <li>Reviews</li>
-          <li>Discounts</li>
-          <li>My Wishlist</li>
-        </ul>
+      <div className="d-flex justify-center w-100">
+        <div className={`navbar2 ${menuOpen ? "open" : ""}`}>
+          <ul className="navbar-links">
+            <li onClick={() => navigate("/")}>Home</li>
+            <li>Anime Collection</li>
+            <li>Characters</li>
+            <li>Bundles</li>
+            <li>Featured</li>
+            <li>Reviews</li>
+            <li>Discounts</li>
+            <li>My Wishlist</li>
+          </ul>
+        </div>
       </div>
     </>
   );

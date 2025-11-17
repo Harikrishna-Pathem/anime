@@ -11,8 +11,8 @@ const Header = () => {
           Discover authentic, high-quality figures from your favorite anime series.
         </p>
         <div className="header-buttons">
-          <button className="btn shop">Shop New Arrivals</button>
-          <button className="btn view">View Bundles</button>
+          <button className="header-button shop">Shop New Arrivals</button>
+          <button className="header-button view">View Bundles</button>
         </div>
       </div>
     </header>

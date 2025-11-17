@@ -1,4 +1,4 @@
-import FeaturedCollection from "../../components/featuredcollection/FeaturedCollection";
+import FeaturedCollection from "../../components/featuredcollection/CategoriesHome";
 import FeaturedProducts from "../../components/featuredproducts/FeaturedProducts";
 import Footer from "../../components/footer.jsx/Footer";
 import Header from "../../components/header/Header";
@@ -10,8 +10,11 @@ import product_four from "../../images/product_four.png";
 import BundlesDeals from "../../components/bundlesdeals/BundleDeals";
 import Reviews from "../../components/reviews/Reviews";
 import SecureSteps from "../../components/securesteps/SecureSteps";
+import { Route, Routes } from "react-router-dom";
+import CategoriesHome from "../../components/featuredcollection/CategoriesHome";
+import CategoriesPage from "../../components/featuredcollection/CategoriesPage";
 
-const Home = ({setShowLogin}) => {
+const Home = ({ setShowLogin }) => {
   const products = [
     {
       id: 1,
@@ -59,16 +62,25 @@ const Home = ({setShowLogin}) => {
 
   return (
     <>
-      <div>
-         <Navbar setShowLogin={setShowLogin} />
-        <Header />
-        <FeaturedCollection products={products} />
-        <BundlesDeals products={products} />
-        <FeaturedProducts products={products} />
-        <Reviews />
-        <SecureSteps />
-      </div>
-      {/* <Footer /> */}
+      <Navbar setShowLogin={setShowLogin} />
+
+      <Routes>
+        <Route
+          path="/*"
+          element={
+            <div>
+              <Header />
+              <CategoriesHome products={products} />
+              <BundlesDeals products={products} />
+              <FeaturedProducts products={products} />
+              <Reviews />
+              <SecureSteps />
+            </div>
+          }
+        />
+
+        <Route path="/categories" element={<CategoriesPage />} />
+      </Routes>
     </>
   );
 };
