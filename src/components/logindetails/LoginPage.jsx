@@ -3,6 +3,7 @@
 import { useState } from "react";
 import "./LoginPage.css";
 import { useAuthContext } from "../../Auth.jsx";
+import { useNavigate } from "react-router-dom";
 
 const LoginPage = ({ setShowLogin, setIsAdmin, onSwitchToSignup, onForgotPassword }) => {
   const [email, setEmail] = useState("");
@@ -10,6 +11,8 @@ const LoginPage = ({ setShowLogin, setIsAdmin, onSwitchToSignup, onForgotPasswor
   const { axiosInstance, isLogin, setIsLogin } = useAuthContext();
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
+
+  const navigate = () => useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -40,6 +43,12 @@ const LoginPage = ({ setShowLogin, setIsAdmin, onSwitchToSignup, onForgotPasswor
 
       setShowLogin(false);
 
+      if (user?.role === 'admin') {
+        setIsAdmin(true);
+        navigate('/admin');
+      } else {
+        setIsAdmin(false);
+      }
     } catch (error) {
       console.log(error);
       setError(error?.response?.data?.message || 'Login failed');
