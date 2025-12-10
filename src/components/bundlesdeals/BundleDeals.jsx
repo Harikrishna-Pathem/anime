@@ -15,6 +15,8 @@ const BundlesDeals = ({ products }) => {
   };
 
   const currentProduct = products[currentIndex];
+  console.log(currentProduct);
+
 
   return (
     <section className="bundles-container">

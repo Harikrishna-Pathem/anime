@@ -7,14 +7,29 @@ import { FaHeart, FaRegHeart } from "react-icons/fa";
 import ProfileMenu from "./ProfileMenu";
 import { useAuthContext } from "../../Auth";
 
-const Navbar = ({ setShowLogin }) => {
+const Navbar = ({ setShowLogin, scrollToSection }) => {
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
 
   const navigate = useNavigate();
   const location = useLocation();
 
-  const {onLogout, isLogin} = useAuthContext();
+  const sections = [
+    { name: 'home', label: 'Home' },
+    { name: 'categories', label: 'Anime Collection' },
+    { name: 'characters', label: 'Characters' },
+    { name: 'bundles', label: 'Bundles' },
+    { name: 'featured', label: 'Featured' },
+    { name: 'reviews', label: 'Reviews' },
+    { name: 'discounts', label: 'Discounts' }
+  ];
+
+  const handleSectionClick = (sectionName) => {
+    setMenuOpen(false); // Close mobile menu
+    scrollToSection(sectionName);
+  };
+
+  const { onLogout, isLogin } = useAuthContext();
   const breakpoint = 768;
 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= breakpoint);
@@ -157,7 +172,7 @@ const Navbar = ({ setShowLogin }) => {
           )}
         </div>
 
-        {(!user && !isLogin ) ? <div className="navbar-signin">
+        {(!user && !isLogin) ? <div className="navbar-signin">
           <button onClick={() => setShowLogin(true)}>Login</button>
         </div> : <ProfileMenu user={user} onLogout={onLogout} />}
       </nav>
@@ -166,13 +181,14 @@ const Navbar = ({ setShowLogin }) => {
       <div className="d-flex justify-center w-100 bottom-navbar">
         <div className={`navbar2 ${menuOpen ? "open" : ""}`}>
           <ul className="navbar-links">
-            <li onClick={() => navigate("/")}>Home</li>
-            <li>Anime Collection</li>
-            <li>Characters</li>
-            <li>Bundles</li>
-            <li>Featured</li>
-            <li>Reviews</li>
-            <li>Discounts</li>
+            {sections.map((section) => (
+              <li
+                key={section.name}
+                onClick={() => handleSectionClick(section.name)}
+              >
+                {section.label}
+              </li>
+            ))}
           </ul>
         </div>
       </div>

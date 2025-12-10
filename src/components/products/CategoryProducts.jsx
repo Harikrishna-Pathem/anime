@@ -57,83 +57,89 @@ export default function CategoryProducts() {
   };
 
   return (
-    <section className={styles.listContainer}>
-      <h1 className={styles.listTitle}>All Products</h1>
+    <>
+      {/* <p>
+        <span onClick={() => navigate('/')}>Home</span>
+        <i className="bi bi-chevron-right"></i>Products
+      </p> */}
+      <section className={styles.listContainer}>
+        <h1 className={styles.listTitle}>All Products</h1>
 
-      <div className={styles.grid}>
-        {productsList?.map((product) => (
-          <div
-            key={product.id}
-            className={styles.gridCard}
-            onClick={() => navigate(`/product/${product.id}`)}
-            role="button"
-            tabIndex={0}
-            onKeyDown={(e) => {
-              if (e.key === "Enter") navigate(`/product/${product.id}`);
-            }}
-          >
-            <div className={styles.gridImageWrapper}>
-              <img src={product.image} alt={product.productName} />
+        <div className={styles.grid}>
+          {productsList?.map((product) => (
+            <div
+              key={product.id}
+              className={styles.gridCard}
+              onClick={() => navigate(`/product/${product.id}`)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter") navigate(`/product/${product.id}`);
+              }}
+            >
+              <div className={styles.gridImageWrapper}>
+                <img src={product.image} alt={product.productName} />
 
-              <div
-                className={styles.wishlistIcon}
-                onClick={(e) => toggleWishlist(product.id, e)}
-                title={product.wishlisted ? "Remove from wishlist" : "Add to wishlist"}
-                role="button"
-              >
-                {product.wishlisted ? (
-                  <FaHeart color="red" size={22} />
-                ) : (
-                  <FaRegHeart color="black" size={22} />
-                )}
-              </div>
-            </div>
-
-            <div className={styles.gridInfo}>
-              <h3>{product.productName}</h3>
-              <div className="d-flex justify-content-between">
-                <p>RS : ₹{product.cost}</p>
-
-
-
-
-                {/* Add to cart / quantity controls */}
-                <div className={styles.cartArea} onClick={(e) => e.stopPropagation()}>
-                  {cart[product.id] ? (
-                    <div className={styles.cartControls}>
-                      <button
-                        className={styles.qtyBtn}
-                        onClick={(e) => decrementQty(product.id, e)}
-                        aria-label={`Decrease quantity of ${product.productName}`}
-                      >
-                        -
-                      </button>
-                      <div className={styles.qtyDisplay} aria-live="polite">
-                        {cart[product.id]}
-                      </div>
-                      <button
-                        className={styles.qtyBtn}
-                        onClick={(e) => incrementQty(product.id, e)}
-                        aria-label={`Increase quantity of ${product.productName}`}
-                      >
-                        +
-                      </button>
-                    </div>
+                <div
+                  className={styles.wishlistIcon}
+                  onClick={(e) => toggleWishlist(product.id, e)}
+                  title={product.wishlisted ? "Remove from wishlist" : "Add to wishlist"}
+                  role="button"
+                >
+                  {product.wishlisted ? (
+                    <FaHeart color="red" size={22} />
                   ) : (
-                    <button
-                      className={styles.addCartBtn}
-                      onClick={(e) => addToCart(product.id, e)}
-                      aria-label={`Add ${product.productName} to cart`}
-                    >
-                      Add to cart
-                    </button>
+                    <FaRegHeart color="black" size={22} />
                   )}
                 </div>
               </div>
+
+              <div className={styles.gridInfo}>
+                <h3>{product.productName}</h3>
+                <div className="d-flex justify-content-between">
+                  <p>RS : ₹{product.cost}</p>
+
+
+
+
+                  {/* Add to cart / quantity controls */}
+                  <div className={styles.cartArea} onClick={(e) => e.stopPropagation()}>
+                    {cart[product.id] ? (
+                      <div className={styles.cartControls}>
+                        <button
+                          className={styles.qtyBtn}
+                          onClick={(e) => decrementQty(product.id, e)}
+                          aria-label={`Decrease quantity of ${product.productName}`}
+                        >
+                          -
+                        </button>
+                        <div className={styles.qtyDisplay} aria-live="polite">
+                          {cart[product.id]}
+                        </div>
+                        <button
+                          className={styles.qtyBtn}
+                          onClick={(e) => incrementQty(product.id, e)}
+                          aria-label={`Increase quantity of ${product.productName}`}
+                        >
+                          +
+                        </button>
+                      </div>
+                    ) : (
+                      <button
+                        className={styles.addCartBtn}
+                        onClick={(e) => addToCart(product.id, e)}
+                        aria-label={`Add ${product.productName} to cart`}
+                      >
+                        Add to cart
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-        ))}
-      </div>
-    </section>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }

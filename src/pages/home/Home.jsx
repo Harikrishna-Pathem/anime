@@ -8,7 +8,7 @@ import product_four from "../../images/product_four.png";
 import BundlesDeals from "../../components/bundlesdeals/BundleDeals";
 import Reviews from "../../components/reviews/Reviews";
 import SecureSteps from "../../components/securesteps/SecureSteps";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import CategoriesHome from "../../components/featuredcollection/CategoriesHome";
 import CategoriesPage from "../../components/featuredcollection/CategoriesPage";
 import FeaturedProductsHome from "../../components/featuredproducts/FeaturedProductsHome";
@@ -16,8 +16,48 @@ import FeaturedProductsList from "../../components/featuredproducts/FeaturedProd
 import Wishlist from "../../components/wishlists/Wishlist";
 import CategoryProducts from "../../components/products/CategoryProducts";
 import SingleProductPage from "../../components/singleproduct/SingleProductPage";
+import { useEffect, useRef } from "react";
 
 const Home = ({ setShowLogin }) => {
+
+
+  
+  const bundleRef = useRef(null);
+  const categoriesRef = useRef(null);
+  const reviewsRef = useRef(null);
+  const animeCollectionRef = useRef(null);
+  const charactersRef = useRef(null);
+  const featuredProductsRef = useRef(null);
+
+
+  const location = useLocation();
+
+  const sectionRefs = {
+    
+    bundles: bundleRef,
+    categories: categoriesRef,
+    reviews: reviewsRef,
+    animecollection: animeCollectionRef,
+    characters: charactersRef,
+    featured: featuredProductsRef
+  }
+
+  const scrollToSection = (sectionName) => {
+    const ref = sectionRefs[sectionName];
+    if (ref.current) {
+      ref.current.scrollIntoView({
+        behavior: "smooth",
+        block: "start"
+      });
+    }
+  }
+
+  // useEffect(() => {
+  //   if (location.pathname === "/bundles") {
+  //     bundleRef.current?.scrollIntoView({ behavior: "smooth" })
+  //   }
+  // }, [location])
+
   const products = [
     {
       id: 1,
@@ -65,7 +105,7 @@ const Home = ({ setShowLogin }) => {
 
   return (
     <>
-      <Navbar setShowLogin={setShowLogin} />
+      <Navbar setShowLogin={setShowLogin} scrollToSection={scrollToSection} />
 
       <Routes>
         <Route
@@ -73,17 +113,26 @@ const Home = ({ setShowLogin }) => {
           element={
             <div>
               <Header />
-              <CategoriesHome products={products} />
-              <BundlesDeals products={products} />
-              <FeaturedProductsHome products={products} />
-              <Reviews />
+              <div ref={categoriesRef}>
+                <CategoriesHome products={products} />
+              </div>
+              <div ref={bundleRef}>
+                <BundlesDeals products={products} />
+              </div>
+              <div ref={featuredProductsRef}>
+                <FeaturedProductsHome products={products} />
+              </div>
+              <div ref={reviewsRef}>
+                <Reviews />
+              </div>
               <SecureSteps />
             </div>
           }
         />
 
+        <Route path="/bundles" element={<BundlesDeals products={products} />} />
         <Route path="/categories/:categoryName/products" element={<CategoryProducts />} />
-        <Route path="/product/:id" element={<SingleProductPage/>}/>
+        <Route path="/product/:id" element={<SingleProductPage />} />
         <Route path="/products" element={<FeaturedProductsList />} />
         <Route path="/wishlist" element={<Wishlist />} />
       </Routes>
